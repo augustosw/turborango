@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TurboRango.Dominio
 {
-    internal enum Categoria
+    public enum Categoria
     {
         [Description("Comum")]
         Comum,

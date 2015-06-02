@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TurboRango.Dominio
 {
-    internal class Restaurante
+    public class Restaurante
     {
-        internal String Nome { get; set; }
-        internal int Capacidade { get; set; }
-        internal Localizacao Localizacao { get; set; }
-        internal Contato Contato { get; set; }
-        internal Categoria Catergoria { get; set; }
+        public String Nome { get; set; }
+        public int Capacidade { get; set; }
+        public Localizacao Localizacao { get; set; }
+        public Contato Contato { get; set; }
+        public Categoria Catergoria { get; set; }
     }
 }

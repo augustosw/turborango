@@ -5,11 +5,11 @@ using System.Text;
 
 namespace TurboRango.Dominio
 {
-    internal class Localizacao
+    public class Localizacao
     {
-        internal String Bairro { get; set; }
-        internal String Logradouro { get; set; }
-        internal double Latitude { get; set; }
-        internal double Longitude { get; set; }
+        public String Bairro { get; set; }
+        public String Logradouro { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

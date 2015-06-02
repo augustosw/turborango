@@ -5,9 +5,9 @@ using System.Text;
 
 namespace TurboRango.Dominio
 {
-    internal class Contato
+    public class Contato
     {
-        internal String Site { get; set; }
-        internal String Telefone { get; set; }
+        public String Site { get; set; }
+        public String Telefone { get; set; }
     }
 }
