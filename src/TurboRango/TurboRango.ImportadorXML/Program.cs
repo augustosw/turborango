@@ -18,6 +18,7 @@ namespace TurboRango.ImportadorXML
             var sites = restaurantes.ObterSites();
             var capacidademedia = restaurantes.CapacidadeMedia();
             var capacidadeMaxima = restaurantes.CapacidadeMaxima();
+            var todos = restaurantes.TodosRestaurantes();
 
         }
     }

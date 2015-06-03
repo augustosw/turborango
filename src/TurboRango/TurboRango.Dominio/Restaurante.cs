@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace TurboRango.Dominio
 {
@@ -12,6 +13,6 @@ namespace TurboRango.Dominio
         public int Capacidade { get; set; }
         public Localizacao Localizacao { get; set; }
         public Contato Contato { get; set; }
-        public Categoria Catergoria { get; set; }
+        public Categoria Categoria { get; set; }
     }
 }
