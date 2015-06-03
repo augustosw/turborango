@@ -26,7 +26,7 @@ namespace TurboRango.ImportadorXML
             restaurantes = XDocument.Load(NomeArquivo).Descendants("restaurante");
         }
 
-        public IList<string> ObterNomes()
+        public IList<string> OrdenarPorNomeAsc()
         {
             //var resultado = new List<string>();
 
@@ -49,11 +49,20 @@ namespace TurboRango.ImportadorXML
             
             return (
                 from n in restaurantes
-                orderby n.Attribute("nome").Value
-                where Convert.ToInt32(n.Attribute("capacidade").Value) < 100
+                orderby n.Attribute("nome").Value ascending
                 select n.Attribute("nome").Value
             ).ToList();
 
+        }
+
+        public IList<string> ObterSites()
+        {
+            return (
+                from n in XDocument.Load(NomeArquivo).Descendants("contato")
+                let site = (string)n.Element("site")
+                where(site != null)
+                select site
+            ).ToList();
         }
 
         public double CapacidadeMedia()
@@ -73,7 +82,7 @@ namespace TurboRango.ImportadorXML
             return mad.Max();
         }
 
-        public IList<Restaurante> AgruparPorCategoria()
+        public Object AgruparPorCategoria()
         {
             var res = from n in restaurantes
                       group n by n.Attribute("categoria").Value into g
@@ -83,6 +92,17 @@ namespace TurboRango.ImportadorXML
                           SomatorioCapacidades = g.Sum(x => Convert.ToInt32(x.Attribute("capacidade").Value))
                       };
 
+            return res.ToList();
+        }
+
+        public IList<Categoria> ApenasComUmRestaurante() 
+        {
+            //return (
+            //          from n in restaurantes
+            //          group n by n.Attribute("categoria") into g
+            //          where g.ToList().Count == 1
+            //          select (Categoria)g.Key
+            //       ).ToList();
             return null;
         }
     }
