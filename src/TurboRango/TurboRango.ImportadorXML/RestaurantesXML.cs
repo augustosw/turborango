@@ -116,6 +116,7 @@ namespace TurboRango.ImportadorXML
                        select new Restaurante
                        {
                            Nome = n.Attribute("nome").Value,
+
                            Capacidade = Convert.ToInt32(n.Attribute("capacidade").Value),
                            Localizacao = new Localizacao{
                                 Bairro = localizacao.Element("bairro").Value,
