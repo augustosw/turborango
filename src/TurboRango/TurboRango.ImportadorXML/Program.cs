@@ -40,6 +40,32 @@ namespace TurboRango.ImportadorXML
 
             #endregion
 
+            #region Tema Restaurantes
+
+            var connectionString = @"Data Source=.\server;Initial Catalog=TurboRango_dev;Integrated Security=True;";
+            var restaurantesTema = new Restaurantes(connectionString);
+            
+            Restaurante dogao = new Restaurante();
+            Contato contatoDogao = new Contato();
+            Localizacao localizacaoDogao = new Localizacao();
+            dogao.Nome = "Dogão";
+            dogao.Capacidade = 100;
+            dogao.Categoria = Categoria.Fastfood;
+            contatoDogao.Site = "www.siteDogao.com.br";
+            contatoDogao.Telefone = "35689457";
+            localizacaoDogao.Bairro = "Bairro Dogao";
+            localizacaoDogao.Logradouro = "Predio Dogao, numero do dogao";
+            localizacaoDogao.Latitude = -25.3568;
+            localizacaoDogao.Longitude = 59.55688;
+            dogao.Contato = contatoDogao;
+            dogao.Localizacao = localizacaoDogao;
+
+            restaurantesTema.Inserir(dogao);
+
+
+
+            #endregion
+
         }
     }
 }
