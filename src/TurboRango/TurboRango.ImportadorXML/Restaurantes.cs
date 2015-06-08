@@ -138,9 +138,6 @@ namespace TurboRango.ImportadorXML
             Contato contato = restaurante.Contato;
             Localizacao localizacao = restaurante.Localizacao;
 
-            AtualizarContato(id, contato);
-            AtualizarLocalizacao(id, localizacao);
-
             using (var connection = new SqlConnection(this.ConnectionString))
             {
                 string comandoSQL = "UPDATE Restaurante"
@@ -155,49 +152,45 @@ namespace TurboRango.ImportadorXML
 
                     connection.Open();
                     atualizaRestaurante.ExecuteNonQuery();
+                    AtualizarContato(id, contato, connection);
+                    AtualizarLocalizacao(id, localizacao, connection);
                 }
             }
         }
 
-        private void AtualizarContato(int id, Contato contato)
+        private void AtualizarContato(int id, Contato contato, SqlConnection connection)
         {
-            using (var connection = new SqlConnection(this.ConnectionString))
+            string comandoSQL = "UPDATE Contato"
+	                            +" SET Site = @Site, Telefone = @Telefone"
+                                +" FROM Contato C, Restaurante R"
+                                +" WHERE R.Id = @Id AND R.ContatoId = C.Id";
+            using (var atualizaContato = new SqlCommand(comandoSQL, connection))
             {
-                string comandoSQL = "UPDATE Contato"
-	                              +" SET Site = @Site, Telefone = @Telefone"
-                                  +" FROM Contato C, Restaurante R"
-                                  +" WHERE R.Id = @Id AND R.ContatoId = C.Id";
-                using (var atualizaContato = new SqlCommand(comandoSQL, connection))
-                {
-                    atualizaContato.Parameters.Add("@Site", SqlDbType.NVarChar).Value = contato.Site ?? (object)DBNull.Value;
-                    atualizaContato.Parameters.Add("@Telefone", SqlDbType.NVarChar).Value = contato.Telefone ?? (object)DBNull.Value;
-                    atualizaContato.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                atualizaContato.Parameters.Add("@Site", SqlDbType.NVarChar).Value = contato.Site ?? (object)DBNull.Value;
+                atualizaContato.Parameters.Add("@Telefone", SqlDbType.NVarChar).Value = contato.Telefone ?? (object)DBNull.Value;
+                atualizaContato.Parameters.Add("@Id", SqlDbType.Int).Value = id;
 
-                    connection.Open();
-                    atualizaContato.ExecuteNonQuery();
-                }
+                atualizaContato.ExecuteNonQuery();
             }
+            
         }
-        private void AtualizarLocalizacao(int id, Localizacao localizacao)
+        private void AtualizarLocalizacao(int id, Localizacao localizacao, SqlConnection connection)
         {
-            using (var connection = new SqlConnection(this.ConnectionString))
+            string comandoSQL = "UPDATE localizacao"
+                                + " SET Bairro = @Bairro, Logradouro = @Logradouro, Latitude = @Latitude, Longitude = @Longitude"
+                                + " FROM Localizacao L, Restaurante R"
+                                + " WHERE R.Id = @Id AND R.LocalizacaoId = L.Id";
+            using (var atualizaLocalizacao = new SqlCommand(comandoSQL, connection))
             {
-                string comandoSQL = "UPDATE localizacao"
-                                 + " SET Bairro = @Bairro, Logradouro = @Logradouro, Latitude = @Latitude, Longitude = @Longitude"
-                                 + " FROM Localizacao L, Restaurante R"
-                                 + " WHERE R.Id = @Id AND R.LocalizacaoId = L.Id";
-                using (var atualizaLocalizacao = new SqlCommand(comandoSQL, connection))
-                {
-                    atualizaLocalizacao.Parameters.Add("@Bairro", SqlDbType.NVarChar).Value = localizacao.Bairro;
-                    atualizaLocalizacao.Parameters.Add("@Logradouro", SqlDbType.NVarChar).Value = localizacao.Logradouro;
-                    atualizaLocalizacao.Parameters.Add("@Latitude", SqlDbType.Float).Value = localizacao.Latitude;
-                    atualizaLocalizacao.Parameters.Add("@Longitude", SqlDbType.Float).Value = localizacao.Longitude;
-                    atualizaLocalizacao.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                atualizaLocalizacao.Parameters.Add("@Bairro", SqlDbType.NVarChar).Value = localizacao.Bairro;
+                atualizaLocalizacao.Parameters.Add("@Logradouro", SqlDbType.NVarChar).Value = localizacao.Logradouro;
+                atualizaLocalizacao.Parameters.Add("@Latitude", SqlDbType.Float).Value = localizacao.Latitude;
+                atualizaLocalizacao.Parameters.Add("@Longitude", SqlDbType.Float).Value = localizacao.Longitude;
+                atualizaLocalizacao.Parameters.Add("@Id", SqlDbType.Int).Value = id;
 
-                    connection.Open();
-                    atualizaLocalizacao.ExecuteNonQuery();
-                }
+                atualizaLocalizacao.ExecuteNonQuery();
             }
+            
         }
     }
 }
