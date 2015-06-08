@@ -83,16 +83,72 @@ namespace TurboRango.ImportadorXML
 
         public void Remover(int id)
         {
-            using (var connection = new SqlConnection(this.ConnectionString))
+            int idContato = 0;
+            int idLocalizacao = 0;
+            #region Connection Select
+            using (var connectionSelect = new SqlConnection(this.ConnectionString))
             {
-                string comandoSQL = "DELETE FROM [dbo].[Restaurante] WHERE Id = @Id";
-                using (var removeRestaurante = new SqlCommand(comandoSQL, connection))
-                {
-                    removeRestaurante.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                
+                //Pega IDs de Contato e Localização
+                string comandoSQL = "SELECT C.Id, L.Id"
+                                 + " FROM Contato C, Localizacao L, Restaurante R"
+                                 + " WHERE R.Id = @Id AND R.ContatoId = C.Id AND R.LocalizacaoId = L.Id";
 
-                    connection.Open();
-                    removeRestaurante.ExecuteNonQuery();
+                using (var getContatoELocalizacao = new SqlCommand(comandoSQL, connectionSelect))
+                {
+                    getContatoELocalizacao.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                    connectionSelect.Open();
+                    var resultado = getContatoELocalizacao.ExecuteReader();
+                    while (resultado.Read())
+                    {
+                        idContato = resultado.GetInt32(0);
+                        idLocalizacao = resultado.GetInt32(1);
+                    }
                 }
+            }
+            #endregion
+
+            #region Connection Remoção
+            using (var connectionRomocao = new SqlConnection(this.ConnectionString))
+            {
+                connectionRomocao.Open();
+                //Remove Restaurante do Banco e seu Contato e Localização
+                RemoverRestaurante(id, connectionRomocao);
+                RemoverContato(idContato, connectionRomocao);
+                RemoverLocalizacao(idLocalizacao, connectionRomocao);
+
+            }
+            #endregion
+
+        } 
+
+        private void RemoverRestaurante(int id, SqlConnection connection)
+        {
+            string comandoSQL = "DELETE FROM [dbo].[Restaurante] WHERE Id = @Id";
+            using (var removeRestaurante = new SqlCommand(comandoSQL, connection))
+            {
+                removeRestaurante.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                removeRestaurante.ExecuteNonQuery();
+            }
+        }
+        private void RemoverContato(int id, SqlConnection connection)
+        {
+            string comandoSQL = "DELETE FROM Contato WHERE Id = @Id";
+            using (var removeContato = new SqlCommand(comandoSQL, connection))
+            {
+                removeContato.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                removeContato.ExecuteNonQuery();
+            }
+        }
+        private void RemoverLocalizacao(int id, SqlConnection connection)
+        {
+            string comandoSQL = "DELETE FROM Localizacao WHERE Id = @Id";
+            using (var removeLocalizacao = new SqlCommand(comandoSQL, connection))
+            {
+                removeLocalizacao.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                removeLocalizacao.ExecuteNonQuery();
             }
         }
 

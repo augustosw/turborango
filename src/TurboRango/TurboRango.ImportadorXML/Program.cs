@@ -60,7 +60,7 @@ namespace TurboRango.ImportadorXML
             dogao.Contato = contatoDogao;
             dogao.Localizacao = localizacaoDogao;
             
-            //restaurantesTema.Inserir(dogao);
+            
 
             var rests = restaurantes.TodosRestaurantes().ToList();
 
@@ -71,7 +71,9 @@ namespace TurboRango.ImportadorXML
 
             var todos = restaurantesTema.Todos().ToList();
 
-            restaurantesTema.Atualizar(18, dogao);
+            //restaurantesTema.Atualizar(18, dogao);
+            //restaurantesTema.Inserir(dogao);
+            restaurantesTema.Remover(18);
 
 
 
