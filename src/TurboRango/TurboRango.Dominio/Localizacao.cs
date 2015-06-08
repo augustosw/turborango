@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TurboRango.Dominio
 {
-    public class Localizacao
+    public class Localizacao : Entidade
     {
         public String Bairro { get; set; }
         public String Logradouro { get; set; }
