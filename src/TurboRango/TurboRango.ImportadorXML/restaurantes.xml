@@ -23,7 +23,7 @@
       <telefone>3595-5258</telefone>
     </contato>
   </restaurante>
-  <restaurante nome="OLÃ‰ ARMAZÃ‰M MEXICANO" categoria="cozinhamexicana" capacidade="30">
+  <restaurante nome="OLÉ ARMAZÉM MEXICANO" categoria="cozinhamexicana" capacidade="30">
     <localizacao>
       <logradouro>Rua Gomes Portinho, 448</logradouro>
       <bairro>Centro</bairro>
@@ -48,7 +48,7 @@
   </restaurante>
   <restaurante nome="SUSHI DAI" categoria="cozinhajaponesa" capacidade="40">
     <localizacao>
-      <logradouro>BagÃ©, 149</logradouro>
+      <logradouro>Bagé, 149</logradouro>
       <bairro>Boa Vista</bairro>
       <latitude>-29,68942</latitude>
       <longitude>-51,125224</longitude>
@@ -56,8 +56,8 @@
   </restaurante>
   <restaurante nome="TAKESHI" categoria="cozinhajaponesa" capacidade="35">
     <localizacao>
-      <logradouro>Rua ConfraternizaÃ§Ã£o, 792</logradouro>
-      <bairro>PÃ¡tria Nova</bairro>
+      <logradouro>Rua Confraternização, 792</logradouro>
+      <bairro>Pátria Nova</bairro>
       <latitude>-29,698669</latitude>
       <longitude>-51,130195</longitude>
     </localizacao>
@@ -79,7 +79,7 @@
   </restaurante>
   <restaurante nome="PICA-PAU LANCHES" categoria="fastfood" capacidade="30">
     <localizacao>
-      <logradouro>Rua: JosÃ© do PatrocÃ­nio, 880</logradouro>
+      <logradouro>Rua: José do Patrocínio, 880</logradouro>
       <bairro>Rio Branco</bairro>
       <latitude>-29,68339</latitude>
       <longitude>-51,135376</longitude>
