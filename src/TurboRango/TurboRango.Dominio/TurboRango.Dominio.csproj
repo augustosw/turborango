@@ -43,8 +43,10 @@
     <Compile Include="Contato.cs" />
     <Compile Include="Entidade.cs" />
     <Compile Include="Localizacao.cs" />
-    <Compile Include="Restaurante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Restaurante.cs" />
+    <Compile Include="Utils\EnumExtensions.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
