@@ -11,138 +11,118 @@ using TurboRango.Web.Models;
 
 namespace TurboRango.Web.Controllers
 {
-    [Authorize]
-    public class RestaurantesController : Controller
+    public class ReservasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Restaurantes
+        // GET: Reservas
         public ActionResult Index()
         {
-            var restaurantes = db.Restaurantes
-                .Include(x => x.Contato)
-                .Include(x => x.Localizacao);
-            return View(restaurantes.ToList());
+            return View(db.Reservas.ToList());
         }
 
-        // GET: Restaurantes/Details/5
+        // GET: Reservas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Restaurante restaurante = db.Restaurantes
-                .Include(x => x.Localizacao)
-                .Include(x => x.Contato)
-                .FirstOrDefault(x => x.Id == id);
-
-            if (restaurante == null)
+            Reserva reserva = db.Reservas.Find(id);
+            if (reserva == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurante);
+            return View(reserva);
         }
 
-        // GET: Restaurantes/Create
+        // GET: Reservas/Create
         public ActionResult Create()
         {
+            List<SelectListItem> restaurantes = new List<SelectListItem>();
+            foreach (var restaurante in db.Restaurantes.ToList())
+            {
+                SelectListItem i = new SelectListItem();
+                i.Text = restaurante.Nome;
+                i.Value = restaurante.Id.ToString();
+                restaurantes.Add(i);
+            }
+            ViewBag.Restaurantes = restaurantes;
             return View();
         }
 
-        // POST: Restaurantes/Create
+        // POST: Reservas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Capacidade,Nome,Categoria,Contato,Localizacao")] Restaurante restaurante)
+        public ActionResult Create([Bind(Include = "Id,Data,QtdePessoas,Nome,Telefone,ValorTotal")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
-                db.Restaurantes.Add(restaurante);
+                db.Reservas.Add(reserva);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(restaurante);
+            return View(reserva);
         }
 
-        // GET: Restaurantes/Edit/5
+        // GET: Reservas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Restaurante restaurante = db.Restaurantes
-                .Include(x => x.Localizacao)
-                .Include(x => x.Contato)
-                .FirstOrDefault(x => x.Id == id);
-            
-            if (restaurante == null)
+            Reserva reserva = db.Reservas.Find(id);
+            if (reserva == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurante);
+            return View(reserva);
         }
 
-        // POST: Restaurantes/Edit/5
+        // POST: Reservas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Capacidade,Categoria,Contato,Localizacao")] Restaurante restaurante)
+        public ActionResult Edit([Bind(Include = "Id,Data,QtdePessoas,Nome,Telefone,ValorTotal")] Reserva reserva)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(restaurante).State = EntityState.Modified;
+                db.Entry(reserva).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(restaurante);
+            return View(reserva);
         }
 
-        // GET: Restaurantes/Delete/5
+        // GET: Reservas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurante restaurante = db.Restaurantes.Find(id);
-            if (restaurante == null)
+            Reserva reserva = db.Reservas.Find(id);
+            if (reserva == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurante);
+            return View(reserva);
         }
 
-        // POST: Restaurantes/Delete/5
+        // POST: Reservas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Restaurante restaurante = db.Restaurantes.Find(id);
-            if(restaurante.Contato != null) db.Contatos.Remove(restaurante.Contato);
-            if(restaurante.Localizacao != null) db.Localizacoes.Remove(restaurante.Localizacao);
-            db.Restaurantes.Remove(restaurante);
+            Reserva reserva = db.Reservas.Find(id);
+            db.Reservas.Remove(reserva);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        [AllowAnonymous] //Exceção do Atuhorize
-        public JsonResult Restaurantes()
-        {
-            var todos = db.Restaurantes
-                .Include(r => r.Localizacao)
-                .ToList();
-
-            return Json(new{
-                restaurantes = todos
-            }, JsonRequestBehavior.AllowGet
-            );
         }
 
         protected override void Dispose(bool disposing)

@@ -11,6 +11,7 @@ namespace TurboRango.Dominio
     {
         public String Nome { get; set; }
         public int Capacidade { get; set; }
+        public decimal ValorPessoa { get; set; }
         public virtual Localizacao Localizacao { get; set; }
         public virtual Contato Contato { get; set; }
         public Categoria Categoria { get; set; }
