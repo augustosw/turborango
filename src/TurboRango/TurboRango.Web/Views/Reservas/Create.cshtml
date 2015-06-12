@@ -1,6 +1,5 @@
 ﻿@using TurboRango.Dominio.Utils
-@using TurboRango.Dominio
-@model TurboRango.Dominio.Reserva
+@model TurboRango.Web.Models.CriarReservaViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -18,10 +17,10 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Restaurante, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RestauranteId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @{ List<TurboRango.Dominio.Restaurante> lista = ViewBag.Restaurantes ?? new List<TurboRango.Dominio.Restaurante>(); }
-                @Html.DropDownListFor(model => model.Restaurante, lista.Select(x => new SelectListItem { Text = (x.Nome +" - R$" +x.ValorPessoa.ToString()), Value = x.Id.ToString() }), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.RestauranteId, lista.Select(x => new SelectListItem { Text = (x.Nome +" - R$" +x.ValorPessoa.ToString()), Value = x.Id.ToString() }), htmlAttributes: new { @class = "form-control", @id="Restaurante" })
             </div>
         </div>
 
@@ -85,7 +84,7 @@
         valores.forEach(function (item) {
             if (item.Id == selecionado.value) {
                 var total = ($('#QtdePessoas').val() * item.Valor)
-                $('#ValorTotal').val("R$"+total);
+                $('#ValorTotal').val(total);
             }
         })
     });
@@ -97,7 +96,7 @@
             var id = $('#Restaurante option:selected').val();
             if (item.Id == id) {
                 var total = (valor * item.Valor)
-                $('#ValorTotal').val("R$"+total);
+                $('#ValorTotal').val(total);
             }
         })
     });

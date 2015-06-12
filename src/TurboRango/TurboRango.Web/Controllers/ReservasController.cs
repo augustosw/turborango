@@ -54,11 +54,23 @@ namespace TurboRango.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Data,QtdePessoas,Nome,Telefone,ValorTotal")] Reserva reserva)
+        public ActionResult Create([Bind(Include = "RestauranteId,Data,QtdePessoas,Nome,Telefone,ValorTotal")] CriarReservaViewModel reserva)
         {
             if (ModelState.IsValid)
             {
-                db.Reservas.Add(reserva);
+                var restaurante = db.Restaurantes.Find(reserva.RestauranteId);
+
+                var novaReserva = new Reserva
+                {
+                    ValorTotal = reserva.ValorTotal,
+                    Telefone = reserva.Telefone,
+                    Restaurante = restaurante,
+                    QtdePessoas = reserva.QtdePessoas,
+                    Nome = reserva.Nome,
+                    Data = reserva.Data
+                };
+
+                db.Reservas.Add(novaReserva);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201506120741393_correcaoDeCampo.Designer.cs">
       <DependentUpon>201506120741393_correcaoDeCampo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506121633269_CadastroFuncionando.cs" />
+    <Compile Include="Migrations\201506121633269_CadastroFuncionando.Designer.cs">
+      <DependentUpon>201506121633269_CadastroFuncionando.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CriarReservaViewModel.cs" />
@@ -286,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506120741393_correcaoDeCampo.resx">
       <DependentUpon>201506120741393_correcaoDeCampo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506121633269_CadastroFuncionando.resx">
+      <DependentUpon>201506121633269_CadastroFuncionando.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

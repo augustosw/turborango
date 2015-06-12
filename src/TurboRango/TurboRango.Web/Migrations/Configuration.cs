@@ -60,6 +60,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "OLÉ ARMAZÉM MEXICANO",
                      Capacidade = 30,
                      Categoria = Categoria.CozinhaMexicana,
+                     ValorPessoa = 25.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Rua Gomes Portinho, 448",
@@ -77,6 +78,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "CHURRASCARIA PRIMAVERA",
                      Capacidade = 110,
                      Categoria = Categoria.Churrascaria,
+                     ValorPessoa = 40.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "BR 116, 2554, Km 31",
@@ -95,6 +97,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "SUSHI DAI",
                      Capacidade = 40,
                      Categoria = Categoria.CozinhaJaponesa,
+                     ValorPessoa = 50.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Bagé, 149",
@@ -108,6 +111,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "TAKESHI",
                      Capacidade = 35,
                      Categoria = Categoria.CozinhaJaponesa,
+                     ValorPessoa = 40.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Rua Confraternização, 792",
@@ -125,6 +129,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "HAI SAIKÔ",
                      Capacidade = 75,
                      Categoria = Categoria.CozinhaJaponesa,
+                     ValorPessoa = 35.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Rua Gomes Portinho, 730",
@@ -143,6 +148,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "PICA-PAU LANCHES",
                      Capacidade = 30,
                      Categoria = Categoria.Fastfood,
+                     ValorPessoa = 20.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Rua: José do Patrocínio, 880",
@@ -161,6 +167,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "FOFINHO LANCHES",
                      Capacidade = 80,
                      Categoria = Categoria.Fastfood,
+                     ValorPessoa = 15.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Rua General Osório, 312",
@@ -178,6 +185,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "RODA PIZZA GIRASSOL",
                      Capacidade = 150,
                      Categoria = Categoria.Pizzaria,
+                     ValorPessoa = 33.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Joaquim Nabuco, 1099 Loja. 01",
@@ -195,6 +203,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "LA CARBONERA",
                      Capacidade = 135,
                      Categoria = Categoria.Pizzaria,
+                     ValorPessoa = 32.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Avenida Dr. Maurício Cardoso, 1904",
@@ -212,6 +221,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "PIZZARIA MASTROIANI",
                      Capacidade = 140,
                      Categoria = Categoria.Pizzaria,
+                     ValorPessoa = 29.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Avenida Pedro Adams Filho, 4668",
@@ -229,6 +239,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "RESTAURANTE FIRENZE",
                      Capacidade = 200,
                      Categoria = Categoria.Comum,
+                     ValorPessoa = 22.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Avenida Pedro Adams Filho, 4668",
@@ -246,6 +257,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "RESTAURANTE LOCATELLI",
                      Capacidade = 400,
                      Categoria = Categoria.Comum,
+                     ValorPessoa = 20.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Rua Borges do Canto, 121",
@@ -263,6 +275,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "DEL PIETRO",
                      Capacidade = 115,
                      Categoria = Categoria.Comum,
+                     ValorPessoa = 21.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Avenida Dr. Maurício Cardoso, 137",
@@ -280,6 +293,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "ADAMS PIZZARIA",
                      Capacidade = 130,
                      Categoria = Categoria.Pizzaria,
+                     ValorPessoa = 31.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Avenida Pedro Adams Filho, 4466",
@@ -297,6 +311,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "RESTAURANTE HABITUÉ",
                      Capacidade = 90,
                      Categoria = Categoria.Comum,
+                     ValorPessoa = 18.00m, 
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Joaquim Nabuco, 1117",
