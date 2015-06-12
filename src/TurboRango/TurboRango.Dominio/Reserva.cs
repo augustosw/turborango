@@ -8,7 +8,7 @@ namespace TurboRango.Dominio
 {
     public class Reserva : Entidade
     {
-        public Restaurante Restarurante { get; set; }
+        public Restaurante Restaurante { get; set; }
         public DateTime Data { get; set; }
         public int QtdePessoas { get; set; }
         public String Nome { get; set; }
@@ -17,7 +17,6 @@ namespace TurboRango.Dominio
 
         public Reserva()
         {
-            ValorTotal = (QtdePessoas * this.Restarurante.ValorPessoa);
         }
     }
 }

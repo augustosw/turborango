@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -39,15 +40,12 @@ namespace TurboRango.Web.Controllers
         // GET: Reservas/Create
         public ActionResult Create()
         {
-            List<SelectListItem> restaurantes = new List<SelectListItem>();
-            foreach (var restaurante in db.Restaurantes.ToList())
-            {
-                SelectListItem i = new SelectListItem();
-                i.Text = restaurante.Nome;
-                i.Value = restaurante.Id.ToString();
-                restaurantes.Add(i);
-            }
-            ViewBag.Restaurantes = restaurantes;
+            var valores = JsonConvert.SerializeObject(db.Restaurantes
+                .ToList()
+                .Select(x => new { Id = x.Id, Valor = x.ValorPessoa }));
+            ViewBag.Valores = valores;
+            ViewBag.Restaurantes = db.Restaurantes.ToList();
+
             return View();
         }
 

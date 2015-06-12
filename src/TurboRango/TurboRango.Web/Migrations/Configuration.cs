@@ -23,6 +23,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "GARFÃO RESTAURANTE E PIZZARIA",
                      Capacidade = 100,
                      Categoria = Categoria.Comum,
+                     ValorPessoa = 27.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Rua Sete de Setembro, 1045 - Liberdade",
@@ -41,6 +42,7 @@ namespace TurboRango.Web.Migrations
                      Nome = "SEMENTE",
                      Capacidade = 40,
                      Categoria = Categoria.CozinhaNatural,
+                     ValorPessoa = 20.00m,
                      Localizacao = new Localizacao
                      {
                          Logradouro = "Rua: Joaquim Pedro Soares, 633",
